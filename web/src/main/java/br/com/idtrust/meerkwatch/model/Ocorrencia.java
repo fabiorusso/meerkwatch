@@ -6,7 +6,7 @@ public class Ocorrencia {
 
 	private Date data;
 	private String mensagem;
-	private Servidor servidor;
+	private String idServidor;
 
 	public Date getData() {
 		return data;
@@ -24,12 +24,12 @@ public class Ocorrencia {
 		this.mensagem = mensagem;
 	}
 
-	public Servidor getServidor() {
-		return servidor;
+	public String getIdServidor() {
+		return idServidor;
 	}
 
-	public void setServidor(Servidor servidor) {
-		this.servidor = servidor;
+	public void setIdServidor(String idServidor) {
+		this.idServidor = idServidor;
 	}
 
 }

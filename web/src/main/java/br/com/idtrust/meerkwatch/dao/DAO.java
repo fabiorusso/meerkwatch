@@ -17,8 +17,12 @@ public abstract class DAO<T> {
 	private DB db;
 
 	public List<T> findAll() {
-		List<T> result = new ArrayList<>();
 		DBCursor cursor = getCollection().find();
+		return convertCursor(cursor);
+	}
+
+	protected List<T> convertCursor(DBCursor cursor) {
+		List<T> result = new ArrayList<>();
 		try {
 			while (cursor.hasNext()) {
 				DBObject obj = cursor.next();
@@ -34,13 +38,16 @@ public abstract class DAO<T> {
 		getCollection().save(convert(obj));
 	}
 
-	public void excluir(T obj) {
-		// getCollection().remove(convert(obj));
+	public void atualizar(T obj) {
+		DBObject dbObj = convert(obj);
+		getCollection().update(getIdQuery(obj), dbObj);
 	}
 
-	public void atualizar(T obj) {
-		// getCollection().update
+	public void excluir(T obj) {
+		getCollection().remove(getIdQuery(obj));
 	}
+
+	protected abstract DBObject getIdQuery(T obj);
 
 	protected abstract String getCollectionName();
 

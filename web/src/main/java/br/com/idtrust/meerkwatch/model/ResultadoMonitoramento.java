@@ -4,24 +4,12 @@ import java.util.Date;
 
 public abstract class ResultadoMonitoramento {
 
-	private Long id;
-	private Parametro parametro;
+	private String idServidor;
+	private ParametroChecagem parametroChecagem;
 	private Date dataMonitoramento;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Parametro getParametro() {
-		return parametro;
-	}
-
-	public void setParametro(Parametro parametro) {
-		this.parametro = parametro;
+	public ResultadoMonitoramento() {
+		this.dataMonitoramento = new Date();
 	}
 
 	public Date getDataMonitoramento() {
@@ -30,6 +18,22 @@ public abstract class ResultadoMonitoramento {
 
 	public void setDataMonitoramento(Date dataMonitoramento) {
 		this.dataMonitoramento = dataMonitoramento;
+	}
+
+	public String getIdServidor() {
+		return idServidor;
+	}
+
+	public void setIdServidor(String idServidor) {
+		this.idServidor = idServidor;
+	}
+
+	public ParametroChecagem getParametroChecagem() {
+		return parametroChecagem;
+	}
+
+	public void setParametroChecagem(ParametroChecagem parametroChecagem) {
+		this.parametroChecagem = parametroChecagem;
 	}
 
 }
