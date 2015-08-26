@@ -6,7 +6,7 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
-	private String tipo;
+	private TipoUsuario tipo;
 
 	public String getLogin() {
 		return login;
@@ -40,11 +40,11 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public String getTipo() {
+	public TipoUsuario getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
 	}
 

@@ -16,6 +16,8 @@ import br.com.idtrust.meerkwatch.model.TipoParametro;
 
 public class ResultadoMonitoramentoDAO extends DAO<ResultadoMonitoramento> {
 
+	private static final long serialVersionUID = -292396641825354676L;
+
 	public List<ResultadoMonitoramento> buscarPorServidor(String idServidor) {
 		return convertCursor(getCollection().find(new BasicDBObject("idServidor", idServidor)));
 	}

@@ -9,6 +9,8 @@ import br.com.idtrust.meerkwatch.model.Email;
 
 public class EmailDAO extends DAO<Email> {
 
+	private static final long serialVersionUID = -7893409122127300061L;
+
 	public Email buscarEmail(String endereco) {
 		List<Email> result = convertCursor(getCollection().find(new BasicDBObject("endereco", endereco)));
 		if (!result.isEmpty()) {

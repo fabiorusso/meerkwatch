@@ -14,6 +14,8 @@ import br.com.idtrust.meerkwatch.model.TipoParametro;
 
 public class ServidorDAO extends DAO<Servidor> {
 
+	private static final long serialVersionUID = -7248210668619321519L;
+
 	public Servidor buscarPorIdentificador(String id) {
 		return transform(getCollection().findOne(new BasicDBObject("id", id)));
 	}

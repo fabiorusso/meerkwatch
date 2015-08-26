@@ -10,6 +10,8 @@ import br.com.idtrust.meerkwatch.model.Ocorrencia;
 
 public class OcorrenciaDAO extends DAO<Ocorrencia> {
 
+	private static final long serialVersionUID = -999137375636719981L;
+
 	public List<Ocorrencia> buscarPorServidorEPeriodo(String idServidor, Date dataInicial, Date dataFinal) {
 		BasicDBObject query = new BasicDBObject("data",
 				new BasicDBObject("$gte", dataInicial.getTime()).append("$lte", dataFinal.getTime()))

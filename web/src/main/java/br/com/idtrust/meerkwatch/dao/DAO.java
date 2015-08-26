@@ -1,5 +1,6 @@
 package br.com.idtrust.meerkwatch.dao;
 
+import java.io.Serializable;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,9 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
-public abstract class DAO<T> {
+public abstract class DAO<T> implements Serializable {
+
+	private static final long serialVersionUID = -6642883464536052046L;
 
 	private MongoClient client;
 	private DBCollection collection;
