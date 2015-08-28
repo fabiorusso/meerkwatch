@@ -8,6 +8,7 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 
 import br.com.idtrust.meerkwatch.LoggedIn;
+import br.com.idtrust.meerkwatch.Utils;
 import br.com.idtrust.meerkwatch.dao.UsuarioDAO;
 import br.com.idtrust.meerkwatch.model.Usuario;
 
@@ -29,21 +30,26 @@ public class LoginController implements Serializable {
 		return usuarioDAO.buscarPorLogin(principal.getName());
 	}
 
-	private String converterSenha(String senha) {
-		return "";
-	}
-
 	public void alterarSenha(Usuario usuario, String senha) {
-		// TODO: alterar senha
+		if (principal.getName() != usuario.getLogin()) {
+			throw new IllegalArgumentException("Usuário não pode alterar senha de um outro usuário");
+		}
+
+		String senhaCripto = Utils.converterSenha(senha);
+		usuario.setSenha(senhaCripto);
+		usuarioDAO.atualizar(usuario);
 	}
 
 	public void autenticar(String login, String senha) {
-		// TODO: autenticar
+		Usuario usuario = usuarioDAO.buscarPorLogin(login);
+		if (!compararSenhas(usuario.getSenha(), senha)) {
+			throw new IllegalArgumentException("Usuário/senha inválidos");
+		}
 	}
 
-	public void compararSenhas(String senhaBanco, String senhaEnviada) {
-		String senhaConvertida = converterSenha(senhaEnviada);
-		// TODO: comparar senhas
+	public boolean compararSenhas(String senhaBanco, String senhaEnviada) {
+		String senhaConvertida = Utils.converterSenha(senhaEnviada);
+		return senhaBanco.equals(senhaConvertida);
 	}
 
 }
