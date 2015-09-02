@@ -2,11 +2,24 @@ package br.com.idtrust.meerkwatch.model;
 
 public class Usuario {
 
+	private Boolean ativado;
 	private String login;
 	private String nome;
 	private String email;
 	private String senha;
 	private TipoUsuario tipo;
+
+	public Usuario() {
+		this.ativado = true;
+	}
+
+	public Boolean getAtivado() {
+		return ativado;
+	}
+
+	public void setAtivado(Boolean ativado) {
+		this.ativado = ativado;
+	}
 
 	public String getLogin() {
 		return login;

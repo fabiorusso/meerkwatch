@@ -24,18 +24,18 @@ public class ResultadoMonitoramentoDAO extends DAO<ResultadoMonitoramento> {
 
 	public List<ResultadoMonitoramento> buscarUltimosMonitoramentos(String idServidor, TipoParametro tipoParametro,
 			ParametroChecagem checagem, int quantidade) {
-		BasicDBObject query = new BasicDBObject("idServidor", idServidor).append("parametroChecagem",
-				checagem.toString());
-		switch (tipoParametro) {
-		case DISPONIBILIDADE:
-			query.append("tipo", "D");
-			break;
-		case THRESHOLD:
-			query.append("tipo", "T");
-			break;
-		}
+		BasicDBObject query = new BasicDBObject("idServidor", idServidor)
+				.append("parametroChecagem", checagem.toString()).append("tipo", getStringFromTipo(tipoParametro));
+
 		return convertCursor(
 				getCollection().find(query).sort(new BasicDBObject("dataMonitoramento", -1)).limit(quantidade));
+	}
+
+	public List<ResultadoMonitoramento> buscarMonitoramentosEntre(String idServidor, Date dataInicial, Date dataFinal) {
+		BasicDBObject query = new BasicDBObject("idServidor", idServidor).append("dataMonitoramento",
+				new BasicDBObject("$gte", dataInicial.getTime()).append("$lte", dataFinal.getTime()));
+
+		return convertCursor(getCollection().find(query));
 	}
 
 	@Override
@@ -96,6 +96,16 @@ public class ResultadoMonitoramentoDAO extends DAO<ResultadoMonitoramento> {
 		} else {
 			return null;
 		}
+	}
+
+	private String getStringFromTipo(TipoParametro tipoParametro) {
+		switch (tipoParametro) {
+		case DISPONIBILIDADE:
+			return "D";
+		case THRESHOLD:
+			return "T";
+		}
+		throw new RuntimeException("Erro inesperado");
 	}
 
 }
