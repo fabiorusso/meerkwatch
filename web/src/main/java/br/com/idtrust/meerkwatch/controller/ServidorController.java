@@ -26,18 +26,18 @@ public class ServidorController implements Serializable {
 
 	private void verificarOuGerarSenha() {
 		// TODO: realizar mecanismo de gerar senha antes de criar o pacote de
-		// instalação
+		// instalacao
 	}
 
 	private void validarDados(Servidor servidor) {
 		if (servidor.getDescricao() == null || servidor.getDescricao().trim().isEmpty()) {
-			throw new IllegalArgumentException("Descrição é obrigatória");
+			throw new IllegalArgumentException("DescriÃ§Ã£o Ã© obrigatÃ³ria");
 		}
 		if (servidor.getId() == null || servidor.getId().trim().isEmpty()) {
-			throw new IllegalArgumentException("Identificador é obrigatório");
+			throw new IllegalArgumentException("Identificador Ã© obrigatÃ³rio");
 		}
 		if (servidor.getParametros() == null || servidor.getParametros().isEmpty()) {
-			throw new IllegalArgumentException("É necessário pelo menos um parâmetro para o servidor");
+			throw new IllegalArgumentException("Ã‰ necessÃ¡rio pelo menos um parÃ¢metro para o servidor");
 		}
 	}
 
@@ -46,7 +46,7 @@ public class ServidorController implements Serializable {
 	}
 
 	public byte[] gerarPacoteInstalacao() {
-		// TODO: fazer mecanismo de criação do pacote de instalação do
+		// TODO: fazer mecanismo de criaÃ¯Â¿Â½Ã¯Â¿Â½o do pacote de instalaÃ¯Â¿Â½Ã¯Â¿Â½o do
 		// monitoramento
 		return null;
 	}
@@ -57,7 +57,7 @@ public class ServidorController implements Serializable {
 
 	public void novoServidor(Servidor servidor) {
 		if (TipoUsuario.ADMINISTRADOR.equals(usuarioLogado.getTipo())) {
-			throw new IllegalAccessError("Tipo de usuário é inválido");
+			throw new IllegalAccessError("Tipo de usuÃ¡rio Ã© invalido");
 		}
 		validarDados(servidor);
 		servidorDAO.atualizar(servidor);

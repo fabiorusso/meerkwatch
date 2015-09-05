@@ -31,15 +31,16 @@ public class LoginModule extends UsernamePasswordLoginModule {
 		if (usuario != null) {
 			return usuario.getSenha();
 		}
-		throw new LoginException("Usu·rio n„o encontrado");
+		throw new LoginException("Usu√°rio n√£o encontrado");
 	}
 
 	@Override
 	protected Group[] getRoleSets() throws LoginException {
-		System.out.println(usuario.getTipo().name());
-		Group[] result = new Group[] { new SimpleGroup(usuario.getTipo().name()) };
+		String name = usuario.getTipo().name();
+		System.out.println();
+		Group[] result = new Group[] { new SimpleGroup("Roles") };
 		try {
-			result[0].addMember(createIdentity(getUsername()));
+			result[0].addMember(createIdentity(name));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new LoginException("Erro ao obter grupo: " + e.getMessage());

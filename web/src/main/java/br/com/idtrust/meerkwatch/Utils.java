@@ -18,7 +18,7 @@ public class Utils {
 			return encrypted;
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Não foi possível converter a senha: " + e.getMessage());
+			throw new RuntimeException("NÃ£o foi possÃ­vel converter a senha: " + e.getMessage());
 		}
 
 	}

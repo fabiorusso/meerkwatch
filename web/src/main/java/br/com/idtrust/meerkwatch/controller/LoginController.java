@@ -32,7 +32,7 @@ public class LoginController implements Serializable {
 
 	public void alterarSenha(Usuario usuario, String senha) {
 		if (principal.getName() != usuario.getLogin()) {
-			throw new IllegalArgumentException("Usuário não pode alterar senha de um outro usuário");
+			throw new IllegalArgumentException("UsuÃ¡rio nÃ£o pode alterar senha de um outro usuÃ¡rio");
 		}
 
 		String senhaCripto = Utils.converterSenha(senha);
@@ -43,7 +43,7 @@ public class LoginController implements Serializable {
 	public void autenticar(String login, String senha) {
 		Usuario usuario = usuarioDAO.buscarPorLogin(login);
 		if (!compararSenhas(usuario.getSenha(), senha)) {
-			throw new IllegalArgumentException("Usuário/senha inválidos");
+			throw new IllegalArgumentException("UsuÃ¡rio/senha invÃ¡lidos");
 		}
 	}
 

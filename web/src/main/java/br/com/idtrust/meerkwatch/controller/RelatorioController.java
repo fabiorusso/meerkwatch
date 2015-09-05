@@ -27,7 +27,7 @@ public class RelatorioController implements Serializable {
 		List<ResultadoMonitoramento> resultados = resultadoMonitoramentoDAO.buscarMonitoramentosEntre(idServidor,
 				dataInicial, dataFinal);
 		List<Ocorrencia> ocorrencias = ocorrenciaDAO.buscarPorServidorEPeriodo(idServidor, dataInicial, dataFinal);
-		// TODO: realizar a agregação dos dados para gerar o relatório
+		// TODO: realizar a agregaÃ§Ã£o dos dados para gerar o relatÃ³rio
 	}
 
 }

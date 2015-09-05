@@ -31,13 +31,13 @@ public class UsuarioController implements Serializable {
 
 	private void validarDados(Usuario usuario) {
 		if (usuario.getLogin() == null || usuario.getLogin().trim().isEmpty()) {
-			throw new IllegalArgumentException("Login n„o deve estar vazio");
+			throw new IllegalArgumentException("Login n√£o deve estar vazio");
 		}
 		if (usuario.getEmail() == null || usuario.getEmail().trim().isEmpty()) {
-			throw new IllegalArgumentException("Email n„o deve estar vazio");
+			throw new IllegalArgumentException("Email n√£o deve estar vazio");
 		}
 		if (usuario.getNome() == null || usuario.getNome().trim().isEmpty()) {
-			throw new IllegalArgumentException("Nome n„o deve estar vazio");
+			throw new IllegalArgumentException("Nome n√£o deve estar vazio");
 		}
 	}
 
@@ -49,8 +49,8 @@ public class UsuarioController implements Serializable {
 
 	private void enviarEmailSenhaPadrao(Usuario usuario) {
 		final String conteudoEmail = "<html>" + "Prezado " + usuario.getNome() + "," + "<br/><br/>"
-				+ "Sua senha para primeiro acesso ao sistema Meerkwatch È <b>" + usuario.getSenha() + ".</b><br/>"
-				+ "… importante, ao efetuar o primeiro login, realizar a alteraÁ„o de sua senha.<br/>"
+				+ "Sua senha para primeiro acesso ao sistema Meerkwatch √© <b>" + usuario.getSenha() + ".</b><br/>"
+				+ "√â importante, ao efetuar o primeiro login, realizar a altera√ß√£o de sua senha.<br/>"
 				+ "<br/>Atenciosamente<br/><br/>Equipe Meerkwatch</html>";
 
 		Email email = new Email();
@@ -73,7 +73,7 @@ public class UsuarioController implements Serializable {
 	public void cadastrarUsuario(Usuario usuario) {
 		Usuario u = usuarioDAO.buscarPorLogin(usuario.getLogin());
 		if (u != null) {
-			throw new IllegalArgumentException("Usu·rio j· existe no sistema");
+			throw new IllegalArgumentException("Usu√°rio j√° existe no sistema");
 		}
 		validarDados(usuario);
 		usuario.setSenha(Utils.converterSenha(criarSenhaPadrao()));
