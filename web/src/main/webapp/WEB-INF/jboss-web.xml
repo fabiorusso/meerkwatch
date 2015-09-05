@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+	<context-root>/meerkwatch</context-root>
+	<security-domain>security-domain-meerkwatch</security-domain>
+</jboss-web>

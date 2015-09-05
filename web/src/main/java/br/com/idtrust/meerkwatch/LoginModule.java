@@ -1,91 +1,50 @@
 package br.com.idtrust.meerkwatch;
 
-import java.io.IOException;
+import java.security.acl.Group;
 import java.util.Map;
 
 import javax.security.auth.Subject;
-import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.NameCallback;
-import javax.security.auth.callback.PasswordCallback;
-import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.auth.login.LoginException;
+
+import org.jboss.security.SimpleGroup;
+import org.jboss.security.auth.spi.UsernamePasswordLoginModule;
 
 import br.com.idtrust.meerkwatch.dao.UsuarioDAO;
 import br.com.idtrust.meerkwatch.model.Usuario;
 
-public class LoginModule implements javax.security.auth.spi.LoginModule {
+public class LoginModule extends UsernamePasswordLoginModule {
 
 	private UsuarioDAO usuarioDAO;
-
-	private Subject subject;
-	private CallbackHandler callbackHandler;
-	private Map<String, ?> sharedState;
-	private Map<String, ?> args;
+	private Usuario usuario;
 
 	@Override
-	public boolean abort() throws LoginException {
-		return false;
-	}
-
-	@Override
-	public boolean commit() throws LoginException {
-		return false;
-	}
-
-	@Override
-	public void initialize(Subject subject, CallbackHandler cbh, Map<String, ?> sharedState, Map<String, ?> args) {
-		this.subject = subject;
-		this.callbackHandler = cbh;
-		this.sharedState = sharedState;
-		this.args = args;
+	public void initialize(Subject arg0, CallbackHandler arg1, Map<String, ?> arg2, Map<String, ?> arg3) {
+		super.initialize(arg0, arg1, arg2, arg3);
 		this.usuarioDAO = new UsuarioDAO();
 	}
 
 	@Override
-	public boolean login() throws LoginException {
-		String[] userPass = getUsernameAndPassword();
-		String username = userPass[0];
-		String senha = Utils.converterSenha(userPass[1]);
-
-		Usuario usuario = getUsuarioFromDataBase(username);
-		if (usuario.getSenha().equals(senha)) {
-			return true;
+	protected String getUsersPassword() throws LoginException {
+		String login = getUsername();
+		usuario = usuarioDAO.buscarPorLogin(login);
+		if (usuario != null) {
+			return usuario.getSenha();
 		}
-		return false;
-	}
-
-	private Usuario getUsuarioFromDataBase(String usuario) {
-		return usuarioDAO.buscarPorLogin(usuario);
+		throw new LoginException("Usuário não encontrado");
 	}
 
 	@Override
-	public boolean logout() throws LoginException {
-		return false;
-	}
-
-	private String[] getUsernameAndPassword() {
-		String[] result = new String[2];
-
-		NameCallback uncb = new NameCallback("Usuário");
-		PasswordCallback pwcb = new PasswordCallback("Senha", false);
-
+	protected Group[] getRoleSets() throws LoginException {
+		System.out.println(usuario.getTipo().name());
+		Group[] result = new Group[] { new SimpleGroup(usuario.getTipo().name()) };
 		try {
-			this.callbackHandler.handle(new Callback[] { uncb, pwcb });
-			result[0] = uncb.getName();
-
-			char[] pass = pwcb.getPassword();
-
-			char[] pw = new char[pass.length];
-			System.arraycopy(pass, 0, pw, 0, pass.length);
-
-			result[1] = new String(pw);
-
-			return result;
-		} catch (IOException | UnsupportedCallbackException e) {
+			result[0].addMember(createIdentity(getUsername()));
+		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException(e.getMessage(), e);
+			throw new LoginException("Erro ao obter grupo: " + e.getMessage());
 		}
+		return result;
 	}
 
 }

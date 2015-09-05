@@ -1,0 +1,3 @@
+--MondoDB User Adim command:
+--User: ricardovhz -pass: ricardo
+db.usuario.insert({ativado:true,login:'ricardovhz',nome:'Ricardo Vanhoz',email:'ricardo.vanhoz@gmail.com',senha:'0f6ce4271ca9ab7d991e3f92a7de038c787bec2cf89e9b93c4d0e3d50b2e4d80',tipo:'ADMINISTRADOR'});

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security-domain name="security-domain-meerkwatch"
+	cache-type="default">
+	<authentication>
+		<login-module code="br.com.idtrust.meerkwatch.LoginModule"
+			flag="required">
+			<module-option name="hashAlgorithm" value="SHA-256" />
+			<module-option name="hashEncoding" value="hex" />
+			<module-option name="digestCallback"
+				value="br.com.idtrust.meerkwatch.CustomDigestCallback" />
+		</login-module>
+	</authentication>
+</security-domain>

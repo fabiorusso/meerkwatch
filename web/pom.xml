@@ -36,5 +36,11 @@
 			<version>1.4</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.picketbox</groupId>
+			<artifactId>picketbox</artifactId>
+			<version>4.0.21.Beta3</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
