@@ -14,7 +14,7 @@
 
 	<modules>
 		<module>web</module>
-		<module>meerkwatch-monitoramento</module>
+		<module>monitoramento</module>
 	</modules>
 
 	<build>

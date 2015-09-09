@@ -2,13 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>br.com.idtrust</groupId>
-    <artifactId>meerkwatch</artifactId>
+    <artifactId>meerkwatch-monitoramento</artifactId>
     <version>0.1.1-SNAPSHOT</version>
   </parent>
-  <artifactId>meerkwatch-monitoramento</artifactId>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>monitoramento-linux</module>
-  	<module>meerkwatch-monitoramento-windows</module>
-  </modules>
+  <artifactId>meerkwatch-monitoramento-core</artifactId>
 </project>
