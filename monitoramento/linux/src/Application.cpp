@@ -10,12 +10,10 @@
 namespace meerkwatch {
 
 Application::Application() {
-	// TODO Auto-generated constructor stub
 
 }
 
 Application::~Application() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace meerkwatch */
