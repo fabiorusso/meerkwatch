@@ -5,15 +5,15 @@
  *      Author: ricardovhz
  */
 
-#include "Application.h"
+#include "ModuloMonitoramento.h"
 
 namespace meerkwatch {
 
-Application::Application() {
+ModuloMonitoramento::ModuloMonitoramento() {
 
 }
 
-Application::~Application() {
+ModuloMonitoramento::~ModuloMonitoramento() {
 }
 
 } /* namespace meerkwatch */
