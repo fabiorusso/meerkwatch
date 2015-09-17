@@ -8,6 +8,8 @@
 #ifndef MONITORAMENTO_CORE_IPCCOMMUNICATOR_H_
 #define MONITORAMENTO_CORE_IPCCOMMUNICATOR_H_
 
+#include "IPCMessage.h"
+
 class IPCCommunicator {
 public:
 	IPCCommunicator();
